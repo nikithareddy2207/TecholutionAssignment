@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
+  <script src="//cdnjs.com/libraries/1000hz-bootstrap-validator"></script>
+
+    <style>
+    .danger-text {
+    color: #ff3547; }
+.default-text {
+    color: #2BBBAD; 
+}
+.btn-default {
+    background-color: #2BBBAD;
+}
+.btn, .white-text {
+    color: #FFF!important;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+}
+.btn, .font-up, footer.page-footer .title {
+    text-transform: uppercase;
+}
+.waves-effect, a {
+    -webkit-tap-highlight-color: transparent;
+}
+.md-form {
+    position: relative;
+}
+.md-form, .md-form .btn {
+    margin-bottom: 1.5rem;
+}
+.md-form .prefix {
+    -webkit-transition: color .2s;
+    transition: color .2s;
+    position: absolute;
+    width: 3rem;
+    font-size: 2rem;
+    padding-top: .5rem;
+}
+.grey-text {
+    color: #9e9e9e!important;
+}
+
+.md-form .prefix~input, .md-form .prefix~textarea {
+    /* margin-left: 3rem;
+    width: 92%;
+    width: -webkit-calc(100% - 3rem);
+    width: calc(100% - 3rem); */
+    border-top: none !important;
+    margin-left: 2.5rem;
+    width: calc(100% - 3rem);
+    border-left: none;
+    border-right: none;
+
+}
+.md-form label{
+    margin-left: 20px;
+    margin-top: -5px;
+}
+.btn {
+    font-size: .8rem;
+    padding: .85rem 2.13rem;
+    margin: 6px;
+    border-radius: 2px;
+    border: 0;
+    -webkit-transition: .2s ease-out;
+    transition: .2s ease-out;
+    white-space: normal!important;
+    cursor: pointer;
+}
+
+.md-form .prefix~label {
+    margin-left: 3rem;
+}
+.md-form label {
+    -webkit-transition: .2s ease-out;
+    transition: .2s ease-out;
+    color: #757575;
+    position: absolute;
+    top: .8rem;
+    left: 0;
+    font-size: 1rem;
+    cursor: text;
+}
+.card-body {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.25rem;
+}
+.student-button{
+    height: 25px;
+    position: relative;
+    border-radius: 20px;
+    font-size: 14px;
+    padding: 0px 24px;
+}
+    </style>
+    
+
+</head>
+<body>
+    <div class="container mt-5">
+        <!-- Grid row -->
+        <div class="row">
+            <!-- Grid column -->
+            <div class="col-md-3"></div>
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="text-center default-text py-3"><a href="resultsboard.html"><button type="button" class="btn btn-success student-button">Student Results Board</button></a><br>contact-form</h3>
+                        <!--Body-->
+                        <form class="well form-horizontal"  data-toggle="validator" role="form" onsubmit="detailssubmit()">
+                        <div class="md-form">
+                            <input class="form-control" type="text" placeholder="First Name"  name="first_name" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)" maxlength="20" required  oninvalid="this.setCustomValidity('Please Enter First Name')" oninput="setCustomValidity('')">
+                        </div>
+                        <div class="md-form">
+                            <input  class="form-control" type="text" placeholder="Last Name" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)" maxlength="20" required  oninvalid="this.setCustomValidity('Please Enter Last Name')" oninput="setCustomValidity('')">
+                        </div>
+                        <div class="md-form">
+                            <input  class="form-control" type="text" placeholder="Class" required  oninvalid="this.setCustomValidity('Please Enter Class')" oninput="setCustomValidity('')">
+                        </div>
+                        <div class="md-form">
+                            <input  class="form-control" type="number" max="2017" placeholder="Year of Passing" required  oninvalid="this.setCustomValidity('Please Enter valid Year of Passing')" oninput="setCustomValidity('')">
+                        </div>
+                        <div class="md-form">
+                            <input  class="form-control" type="number" max="100" placeholder="Percentage" required  oninvalid="this.setCustomValidity('Please Enter valid Percentage')" oninput="setCustomValidity('')">
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-default waves-effect waves-light">Submit</button>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+            <!-- Grid column -->
+        </div>
+        <!-- Grid row -->
+    </div>
+       
+</body>
+</html>
+
+<script> 
+    function detailssubmit() { 
+        alert("Your details were Submitted"); 
+    } 
+</script> 

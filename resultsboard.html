@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    .table-striped>tbody>tr:nth-of-type(odd) {
+      background-color: #f8f6ff;
+    }
+    .bg-color{
+      background-color: #6c7ae0;
+      font-family: Lato-Bold;
+      font-size: 18px;
+      color: #fff;
+      line-height: 1.4;
+    }
+    .sample-table{
+      border-radius: 20px;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <br>
+  <h3 class="text-center default-text py-3"><a href="exercise2.html"><button type="button" class="btn btn-success" style="height: 35px;position: relative;border-radius: 20px;font-size: 14px;padding: 0px 24px;">Contact Form</button></a><br></h3>
+<br>
+  <table class="table table-striped table-bordered sample-table">
+    <thead class="bg-color" id="thead">
+    </thead>
+    <tbody class="table-bg" id="tbody">
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>
+
+<script>
+  function tableFromJson() {
+    
+  var studentDetails = [{
+      "name": "rajiv",
+      "marks": {
+        "Maths": "18",
+        "English": "21",
+        "Science": "45"
+      },
+      "rollNumber": "KV2017-5A2"
+    },
+    {
+      "name": "abhishek",
+      "marks": {
+        "Maths": "43",
+        "English": "30",
+        "Science": "37"
+      },
+      "rollNumber": "KV2017-5A1"
+    },
+    {
+      "name": "zoya",
+      "marks": {
+        "Maths": "42",
+        "English": "31",
+        "Science": "50"
+      },
+      "rollNumber": "KV2017-5A3"
+    }
+  ]
+
+  studentDetails.sort(function(a, b) {
+    var nameA = a.name.toLowerCase(),
+      nameB = b.name.toLowerCase()
+    if (nameA < nameB)
+      return -1
+    if (nameA > nameB)
+      return 1
+    return 0 
+  })
+
+
+  var col = ["Student Name", "Roll Number", "Total Marks", "Status"];
+  var studentsData = [];
+  for (var i = 0; i < studentDetails.length; i++) {
+    var totalMarks = 0;
+    var minMarks = 50;
+    for (const subject in studentDetails[i].marks) {
+      totalMarks = totalMarks + parseInt(studentDetails[i].marks[subject]);
+      minMarks = studentDetails[i].marks[subject] < minMarks ? studentDetails[i].marks[subject] : minMarks;
+    }
+    var studentObject = {
+      "Student Name": studentDetails[i].name.charAt(0).toUpperCase() + studentDetails[i].name.slice(1),
+      "Roll Number": studentDetails[i].rollNumber,
+      "Total Marks": totalMarks,
+      "Status": minMarks < 20 ? "Fail" : "Pass",
+      "Color":minMarks < 20 ? "Red" : "Black"
+    }
+    studentsData.push(studentObject);
+  }
+
+  studentsData[getMax(studentsData, 'Total Marks')].Status = "Topper"
+  studentsData[getMax(studentsData, 'Total Marks')].Color = "Green"
+
+
+  var thead = document.getElementById("thead");
+  var tbody = document.getElementById("tbody");
+
+
+  var mtr = thead.insertRow(-1);
+  var mth = document.createElement("th");
+  mth.setAttribute("colspan", 4);
+  mth.style.textAlign = "left"
+  mth.innerHTML = "Students​ ​Result​ ​Board";
+  mtr.appendChild(mth);
+  var tr = thead.insertRow(-1);
+
+  for (var i = 0; i < col.length; i++) {
+    var th = document.createElement("th"); 
+    th.innerHTML = col[i];
+    th.style.fontStyle = 'italic';
+    tr.appendChild(th);
+  }
+
+
+  for (var i = 0; i < studentsData.length; i++) {
+
+    tr = tbody.insertRow(-1);
+
+    for (var j = 0; j < col.length; j++) {
+    tr.style.color = studentsData[i].Color;
+      var tabCell = tr.insertCell(-1);
+      tabCell.innerHTML = studentsData[i][col[j]];
+    }
+  }
+}
+
+function getMax(arr, prop) {
+  var max, index;
+  for (var i = 0; i < arr.length; i++) {
+    if (max == null || parseInt(arr[i][prop]) > parseInt(max[prop]))
+      max = arr[i];
+    index = i;
+  }
+  return index;
+}
+
+tableFromJson();
+
+</script>
